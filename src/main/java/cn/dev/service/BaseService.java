@@ -13,8 +13,6 @@ public class BaseService {
     @Autowired
     BaseMapper baseMapper;
 
-
-
     public Base getBaseByName(String name) {
         return baseMapper.findByName(name);
     }
@@ -42,5 +40,4 @@ public class BaseService {
         int count = baseMapper.addBase(base.getName(), base.getRemarks());
         return count + "";
     }
-
 }
