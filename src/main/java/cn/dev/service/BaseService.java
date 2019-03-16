@@ -6,7 +6,9 @@ import cn.dev.model.Base;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class BaseService {
@@ -26,23 +28,27 @@ public class BaseService {
         return bases;
     }
 
-    public String updateByID(Base base) {
-        int count = baseMapper.updateById(base);
-        return count + "";
+    public Map updateByID(Base base) {
+        Map result = new HashMap();
+        result.put("base update", baseMapper.updateById(base));
+        return result;
     }
 
-    public String replacebyID(Base base) {
-        int count = baseMapper.replaceById(base);
-        return count + "";
+    public Map replacebyID(Base base) {
+        Map result = new HashMap();
+        result.put("base update", baseMapper.replaceById(base));
+        return result;
     }
 
-    public String deleteBaseByID(Integer id) {
-        int count = baseMapper.deleteById(id);
-        return count + "";
+    public Map deleteBaseByID(Integer id) {
+        Map result = new HashMap();
+        result.put("base delete", baseMapper.deleteById(id));
+        return result;
     }
 
-    public String addBase(Base base) {
-        int count = baseMapper.add(base);
-        return count + "";
+    public Map addBase(Base base) {
+        Map result = new HashMap();
+        result.put("base add", baseMapper.add(base));
+        return result;
     }
 }

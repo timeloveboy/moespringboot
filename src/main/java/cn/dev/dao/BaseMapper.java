@@ -19,7 +19,7 @@ public interface BaseMapper {
     Base findByName(@Param("name") String name);
 
 
-    @Insert("insert into base(name,create_time,remarks) values( #{name},now(),#{remarks})")
+    @Insert("insert into base(name,createtime,remarks) values( #{name},now(),#{remarks})")
     Integer add(Base base);
 
 

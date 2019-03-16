@@ -9,6 +9,6 @@ import java.util.Date;
 public class Base implements Serializable {
     Integer id;
     String name;
-    Date create_time;
+    Date createtime;
     String remarks;
 }
