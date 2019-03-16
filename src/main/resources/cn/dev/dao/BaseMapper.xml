@@ -4,11 +4,11 @@
     <select id="filter" resultType="cn.dev.model.Base" parameterType="cn.dev.model.Base">
         select * from base
         <where>
-            <if test="name!=null">
-                name like '%${name}%'
+            <if test="#{base.name}!=null">
+                and name like '%${base.name}%'
             </if>
-            <if test="remarks!=null">
-                remarks like '%${remarks}%'
+            <if test="#{base.remarks}!=null">
+                and remarks like '%${base.remarks}%'
             </if>
         </where>
         <if test="offset==0">
@@ -22,13 +22,13 @@
     <update id="updateById" parameterType="cn.dev.model.Base">
         update base
         <where>
-            id = #{id}
+            id = #{base.id}
         </where>
-        <if test="name!=null">
-            set name = #{name}
+        <if test="#{base.name}!=null">
+            set name = #{base.name}
         </if>
-        <if test="name!=null">
-            set remarks = #{remarks}
+        <if test="#{base.remarks}!=null">
+            set remarks = #{base.remarks}
         </if>
     </update>
 </mapper>
