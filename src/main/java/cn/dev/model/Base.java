@@ -11,5 +11,4 @@ public class Base implements Serializable {
     String name;
     Date create_time;
     String remarks;
-    Boolean del_flag;
 }
