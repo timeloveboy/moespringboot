@@ -3,10 +3,16 @@ package cn.dev.controller;
 import cn.dev.model.Base;
 import cn.dev.model.CommonResp;
 import cn.dev.service.BaseService;
+import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @RequestMapping("base")
@@ -34,16 +40,22 @@ public class BaseController {
 
     @ApiOperation(value = "根据name搜索Base", notes = "")
     @RequestMapping(value = "search", method = RequestMethod.GET)
-    public CommonResp search(@RequestParam(required = false) String name, @RequestParam(required = false) Integer offset, @RequestParam(required = false) Integer limit) {
+    public CommonResp search(@RequestParam(required = false) Integer offset, @RequestParam(required = false) Integer limit) {
         CommonResp resp = new CommonResp();
 
+        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = requestAttributes.getRequest();
+        HttpServletResponse response = requestAttributes.getResponse();
+
+
+        Base base = JSON.parseObject(JSON.toJSONString(request.getParameterMap()), Base.class);
         if (offset == null) {
             offset = 0;
         }
         if (limit == null) {
             limit = searchlimit;
         }
-        resp.setResult(baseService.filter(name, offset, limit));
+        resp.setResult(baseService.filter(base, offset, limit));
         return resp;
     }
 

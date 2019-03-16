@@ -21,8 +21,8 @@ public class BaseService {
         return baseMapper.findById(id);
     }
 
-    public List<Base> filter(String name, int from, int limit) {
-        List<Base> bases = baseMapper.filter(name, from, limit);
+    public List<Base> filter(Base base, int from, int limit) {
+        List<Base> bases = baseMapper.filter(base, from, limit);
         return bases;
     }
 
