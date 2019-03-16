@@ -31,7 +31,7 @@ public class BaseService {
         return count + "";
     }
 
-    public String replaceyID(Base base) {
+    public String replacebyID(Base base) {
         int count = baseMapper.replaceById(base);
         return count + "";
     }

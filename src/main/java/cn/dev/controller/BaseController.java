@@ -59,7 +59,7 @@ public class BaseController {
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public CommonResp update(@RequestParam Integer id, @RequestBody Base base) {
         CommonResp resp = new CommonResp();
-        resp.setResult(baseService.updateByID(id, base.getName(), base.getRemarks()));
+        resp.setResult(baseService.updateByID(base));
         return resp;
     }
 
@@ -67,7 +67,7 @@ public class BaseController {
     @RequestMapping(value = "replace", method = RequestMethod.PUT)
     public CommonResp replace(@RequestParam Integer id, @RequestBody Base base) {
         CommonResp resp = new CommonResp();
-        resp.setResult(baseService.replaceBaseByID(id, base));
+        resp.setResult(baseService.replacebyID(base));
         return resp;
     }
 
