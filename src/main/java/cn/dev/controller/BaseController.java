@@ -22,9 +22,9 @@ public class BaseController {
     public CommonResp get(@RequestParam(required = false) String name, @RequestParam(required = false) Integer id) {
         CommonResp resp = new CommonResp();
         if (name != null) {
-            resp.setResult(baseService.getBaseByName(name));
+            resp.setResult(baseService.getByName(name));
         } else if (id != null) {
-            resp.setResult(baseService.getBaseByID(id));
+            resp.setResult(baseService.getByID(id));
         } else {
             resp.setCode(-1);
             resp.setMessage("name or id need");
@@ -43,7 +43,7 @@ public class BaseController {
         if (limit == null) {
             limit = searchlimit;
         }
-        resp.setResult(baseService.getBaselist(name, offset, limit));
+        resp.setResult(baseService.filter(name, offset, limit));
         return resp;
     }
 
@@ -59,7 +59,15 @@ public class BaseController {
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public CommonResp update(@RequestParam Integer id, @RequestBody Base base) {
         CommonResp resp = new CommonResp();
-        resp.setResult(baseService.updateBaseByID(id, base.getName(), base.getRemarks()));
+        resp.setResult(baseService.updateByID(id, base.getName(), base.getRemarks()));
+        return resp;
+    }
+
+    @ApiOperation(value = "根基id替换base", notes = "")
+    @RequestMapping(value = "replace", method = RequestMethod.PUT)
+    public CommonResp replace(@RequestParam Integer id, @RequestBody Base base) {
+        CommonResp resp = new CommonResp();
+        resp.setResult(baseService.replaceBaseByID(id, base));
         return resp;
     }
 

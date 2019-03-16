@@ -13,21 +13,26 @@ public class BaseService {
     @Autowired
     BaseMapper baseMapper;
 
-    public Base getBaseByName(String name) {
+    public Base getByName(String name) {
         return baseMapper.findByName(name);
     }
 
-    public Base getBaseByID(Integer id) {
+    public Base getByID(Integer id) {
         return baseMapper.findById(id);
     }
 
-    public List<Base> getBaselist(String name, int from, int limit) {
-        List<Base> bases = baseMapper.getBaselist(name, from, limit);
+    public List<Base> filter(String name, int from, int limit) {
+        List<Base> bases = baseMapper.filter(name, from, limit);
         return bases;
     }
 
-    public String updateBaseByID(Integer id, String name, String remarks) {
-        int count = baseMapper.updateById(id, name, remarks);
+    public String updateByID(Base base) {
+        int count = baseMapper.updateById(base);
+        return count + "";
+    }
+
+    public String replaceyID(Base base) {
+        int count = baseMapper.replaceById(base);
         return count + "";
     }
 
@@ -37,7 +42,7 @@ public class BaseService {
     }
 
     public String addBase(Base base) {
-        int count = baseMapper.addBase(base.getName(), base.getRemarks());
+        int count = baseMapper.add(base);
         return count + "";
     }
 }

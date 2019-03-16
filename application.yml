@@ -1,0 +1,22 @@
+server:
+  port: 8000
+spring:
+  datasource:
+    maindb:
+      url:  jdbc:mysql://47.107.102.188:3306/gdupi?useUnicode=true&characterEncoding=utf8&useSSL=true
+      username: root
+      password: admin123
+      driver-class-name:  com.mysql.jdbc.Driver
+      max-idle: 10
+      max-wait: 10000
+      min-idle: 5
+      initial-size: 5
+      validation-query: SELECT 1
+      test-on-borrow: false
+      test-while-idle:  true
+      time-between-eviction-runs-millis:  18800
+
+## LOG4J配置
+logging:
+  config: log4j2.xml
+limit:  100
