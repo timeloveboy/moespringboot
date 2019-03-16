@@ -5,7 +5,7 @@ spring:
     maindb:
       url:  jdbc:mysql://47.107.102.188:3306/dev?useUnicode=true&characterEncoding=utf8&useSSL=true
       username: root
-      password: admin123
+      password: light3d
       driver-class-name:  com.mysql.jdbc.Driver
       max-idle: 10
       max-wait: 10000
